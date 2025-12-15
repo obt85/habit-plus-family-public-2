@@ -1,0 +1,18 @@
+# Autorise le téléchargement d’APK
+AddType application/vnd.android.package-archive .apk
+
+# Force le bon header Content-Disposition
+<FilesMatch "\.apk$">
+    Header set Content-Type "application/vnd.android.package-archive"
+    Header set Content-Disposition "attachment"
+</FilesMatch>
+
+# Sécurité basique : empêche l’indexation
+Options -Indexes
+
+# (OPTIONNEL) CORS : si tu veux télécharger l’APK depuis ton app front (Vite/Figma...)
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>
