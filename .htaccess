@@ -1,0 +1,24 @@
+# =============================================================================
+# CORS minimal pour images
+# =============================================================================
+<IfModule mod_headers.c>
+    Header always set Access-Control-Allow-Origin "https://localhost"
+	Header always set Access-Control-Allow-Credentials "true"
+	Header always set Access-Control-Allow-Methods "GET, HEAD, OPTIONS"
+	Header always set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization, Range"
+    Header always set Access-Control-Max-Age "86400"
+    Header always set Access-Control-Expose-Headers "Content-Length, Content-Range, Content-Type"
+</IfModule>
+
+# =============================================================================
+# Cache control
+# =============================================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
